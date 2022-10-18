@@ -104,16 +104,6 @@ Broadly, this lets you isolate problems in order to see which commits might be p
 
 Learn more about [release and commit tracking](/product/releases/).
 
-### Suspect Commits
-
-Once you are tracking the commits, the 'suspect commit' is the commit that likely introduced the error.
-
-One special benefit of using Sentry's Commit Tracking is the ability to know the suspect commit that likely caused the error, with a suggested plan of action for how to rectify the error. For example, after pinpointing the suspect commit, you can also identify the developer who made the commit and assign them the task of fixing the error.
-
-![Issue detail highlighting suspect commits](highlighting-suspect-commits.png)
-
-Here is where you can find info for [suspect commit setup](/product/releases/setup/release-automation/).
-
 ### Resolve via Commit or Pull Request
 
 Once you've added a repository (see configuration step 8), you can start resolving issues by including `fixes <SHORT-ID>` in your commit messages. You might want to type something in the commit like: "this fixes MyApp-AB12" or "Fixes MyApp-317". The keyword to include is **fixes**. You can also resolve issues with pull requests by including `fixes <SHORT-ID>` in the title or description. This will automatically resolve the issue in the next release.
@@ -144,6 +134,14 @@ Stack trace linking takes you from a file in your Sentry stack trace to that sam
 
       1. If the file path in your Sentry stack trace frame doesn't match the path to your source code, you will need to replace the **stack_root** part of the file path with your **source_root** to make the file path match the source code path.
          * ex. For example, to get `src/code.py` to match `code.py` when the source code path is `https://gitlab.com/murdith-group/issa-project/-/blob/main/code.py`, change the **stack trace root** to be set as `src/`, and leave **source code root** empty.
+
+### Suspect Commits
+
+Once you have setup Stack Trace Linking, Sentry can use information from your source code provider to suggest the commit that likely introduced the error. For example, after pinpointing the suspect commit, you can also identify the developer who made the commit and assign them the task of fixing the error.
+
+![Issue detail highlighting suspect commits](highlighting-suspect-commits.png)
+
+Here is where you can find info for [suspect commit setup](/product/issues/suspect-commits/).
 
 ### Code Owners
 
